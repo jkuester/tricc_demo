@@ -1,0 +1,57 @@
+name: TRICC Workflow
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  run-tricc:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout L2 repository
+      uses: actions/checkout@v4
+
+    - name: Run TRICC Action
+      uses: SwissTPH/tricc/.github/actions/tricc-action@develop
+      with:
+        input_path: 'L2'
+        output_path: 'L3'
+        output_strategy: 'XLSFormStrategy' # XLSFormCHTStrategy, XLSFormCHTHFStrategy, XLSFormStrategy, XLSFormCDSSStrategy
+        input_strategy: 'DrawioStrategy'
+    # Configure Git user for commits
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    # Add and commit the artifact
+    - name: Commit Artifact
+      run: |
+        git add L3
+        git commit -m "Add/update generated artifact" || echo "No changes to commit"
+
+    # Push changes to the branch
+    - name: Push Changes
+      run: |
+        git push origin HEAD
+#
+#    # Create or update the PR
+#    - name: Create or Update Pull Request
+#      uses: peter-evans/create-pull-request@v6
+#      with:
+#        token: ${{ secrets.GITHUB_TOKEN }}  # Default token is fine for most cases
+#        branch: ${{ github.ref_name }}      # Use the current branch
+#        base: main                          # Target branch (e.g., main)
+#        title: "Add generated artifact"
+#        body: "This PR includes the generated artifact. Updates will be pushed here until merged."
+#        commit-message: "Update artifact in PR"
+#        delete-branch: false
+#
+    - name: Upload output
+      uses: actions/upload-artifact@v4
+      with:
+        name: tricc-output
+        path: ${{ github.workspace }}/L3
+
