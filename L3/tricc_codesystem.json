@@ -1,0 +1,83 @@
+{
+    "resourceType": "CodeSystem",
+    "id": "tricc",
+    "url": "http://example.com/fhir/CodeSystem/tricc",
+    "version": "1.0.0",
+    "name": "tricc",
+    "title": "tricc",
+    "status": "draft",
+    "description": "Code system for tricc",
+    "content": "complete",
+    "concept": [
+        {
+            "code": "opt_1",
+            "display": "See    ",
+            "property": [
+                {
+                    "code": "datatype",
+                    "valueString": "N/A"
+                }
+            ]
+        },
+        {
+            "code": "opt_2",
+            "display": "Discuss",
+            "property": [
+                {
+                    "code": "datatype",
+                    "valueString": "N/A"
+                }
+            ]
+        },
+        {
+            "code": "opt_none",
+            "display": "None of the above",
+            "property": [
+                {
+                    "code": "datatype",
+                    "valueString": "N/A"
+                }
+            ]
+        },
+        {
+            "code": "select_KgF9xZfLLQdz0KhzX4mR-9",
+            "display": "What do you want to do",
+            "property": [
+                {
+                    "code": "datatype",
+                    "valueString": "N/A"
+                }
+            ]
+        },
+        {
+            "code": "1",
+            "display": "Yes",
+            "property": [
+                {
+                    "code": "datatype",
+                    "valueString": "N/A"
+                }
+            ]
+        },
+        {
+            "code": "-1",
+            "display": "No",
+            "property": [
+                {
+                    "code": "datatype",
+                    "valueString": "N/A"
+                }
+            ]
+        },
+        {
+            "code": "ask_KgF9xZfLLQdz0KhzX4mR-3",
+            "display": "Are you happy",
+            "property": [
+                {
+                    "code": "datatype",
+                    "valueString": "Coded"
+                }
+            ]
+        }
+    ]
+}
